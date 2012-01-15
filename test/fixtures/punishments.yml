@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  goal: 
+  payment: MyString
+  emails: 
+  other: MyString
+
+two:
+  goal: 
+  payment: MyString
+  emails: 
+  other: MyString
