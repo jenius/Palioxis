@@ -1,3 +1,7 @@
-%h1 All users
+%h3= "Welcome #{current_user.email}"
+= link_to "Sign Out", destroy_user_session_path, :method => 'delete'
+%h1 User List
 - @users.each do |u|
-	%li= u.inspect
+	%li= u.try(:full_name)
+
+%br
