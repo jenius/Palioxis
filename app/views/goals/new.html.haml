@@ -1,0 +1,14 @@
+%p Create a new goal page
+
+= form_for([@user, @user.goals.build]) do |f|
+  
+  .field
+    =f.label :name, "Name Your Goal"
+    =f.text_field :name
+
+  .field
+    =f.label :due, "When is it due?"
+    =f.text_field :due
+
+  .actions
+    = f.submit
