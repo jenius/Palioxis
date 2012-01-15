@@ -1,8 +1,11 @@
-%h3= "Welcome #{current_user.email}"
-= link_to "Sign Out", destroy_user_session_path, :method => 'delete'
-%h1 User List
+- if current_user
+	%h3= "Welcome #{current_user.email}"
+	=link_to "Sign Out", destroy_user_session_path, :method => 'delete'
+	=link_to "See Goals", user_goals_path(current_user.id)
+- else
+	=link_to "Sign In", new_user_session_path
+%h1 Look at all the people using this application
 - @users.each do |u|
 	%li= u.try(:full_name)
 
 %br
-=link_to "See Goals", user_goals_path(current_user.id)
