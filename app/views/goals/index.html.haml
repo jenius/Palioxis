@@ -1,6 +1,6 @@
 %p Here are your current goals:
 - @user.goals.each do |g|
-	%li= g.name
+	%li= link_to "#{g.name}", user_goal_path(current_user.id, g.id)
 %ul
 
 =link_to "Create New Goal", new_user_goal_path

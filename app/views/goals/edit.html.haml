@@ -1,0 +1,13 @@
+%p Did you complete your goal? Be honest...
+
+= form_for([@user, @goal]) do |f|
+
+  .field
+    =f.label :status, "Yes!"
+    =f.radio_button :state, :success
+   
+  .field
+    =f.label :status, "No..."
+    =f.radio_button :state, :failure
+    
+  =f.submit "Submit"

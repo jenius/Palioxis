@@ -1,4 +1,4 @@
-%p Create a new goal page
+%h2 Create a new goal
 
 = form_for([@user, @user.goals.build]) do |f|
   
@@ -9,6 +9,18 @@
   .field
     =f.label :due, "When is it due?"
     =f.text_field :due
+  
+  .field
+    =f.label :payment, "How much will do you want to bet that you'll do this?"
+    =f.text_field :payment
+
+  .field
+    =f.label :emails, "Who is going to hold you accountable? (emails)"
+    =f.text_field :emails
+  
+  .field
+    =f.label :other, "What other potential punishments do you want to add?"
+    =f.text_field :other 
 
   .actions
     = f.submit
