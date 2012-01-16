@@ -12,7 +12,6 @@ class GoalsController < ApplicationController
   def index
     @user = User.find(params[:user_id])
     @goals = Goal.all
-    logger.debug "=========================="
   end
 
   def new
@@ -21,9 +20,13 @@ class GoalsController < ApplicationController
   end
 
   def create
-    params[:goal][:state] = :pending
     @user = User.find(params[:user_id])
     @goal = @user.goals.new(params[:goal])
+
+    # set state and format date
+    params[:goal][:state] = :pending
+    params[:goal][:due] = Date.strptime(params[:goal][:due], "%m/%d/%Y")
+    
     if @goal.save
       redirect_to user_goals_path(params[:user_id])
     else
