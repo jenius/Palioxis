@@ -19,6 +19,7 @@ $ ->
       if status == 200
         console.log response
         $('#user_stripe_token').val(response.id)
+        $('#stripe_token').val(response.id)
         $('#add_card form')[0].submit()
       else
         alert response.error.message

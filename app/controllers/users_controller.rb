@@ -10,6 +10,14 @@ class UsersController < ApplicationController
   	@user = User.find(params[:id])
   end
 
+  def edit_card
+	customer = Stripe::Customer.retrieve(current_user.stripe_token)
+	customer.card = params[:stripe_token]
+	customer.save
+	flash[:notice] = "Card changed successfully"
+	render 'add_card'
+  end
+
   def update
   	@user = User.find(params[:id])
   	@user.save_card
