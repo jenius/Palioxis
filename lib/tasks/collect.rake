@@ -7,10 +7,10 @@ task :collect => :environment do
         :amount => goal.payment.to_i,
         :currency => "usd",
         :customer => Stripe::Customer.retrieve(goal.user.stripe_token),
-        :description => "Palioxis - You didn't complete your goal: #{goal.name}"
+        :description => "#{goal.user.email} failed a goal '#{goal.name}'"
       )
       puts "Charged #{goal.payment} to #{goal.user.full_name}'s card"
-      
+
       # make sure nobody gets charged twice
       goal.state = "charged"
       goal.save!
