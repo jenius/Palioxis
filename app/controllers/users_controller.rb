@@ -40,7 +40,7 @@ class UsersController < ApplicationController
         :amount => params[:amount].to_i,
         :currency => "usd",
         :customer => Stripe::Customer.retrieve(current_user.stripe_token),
-        :description => "Donation to Jeff, aw yeah"
+        :description => "Donation from #{current_user.email}"
       )
       flash[:notice] = "Great success! I now have all your monies!"
       render 'donate'
