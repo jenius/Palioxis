@@ -30,9 +30,7 @@ class UsersController < ApplicationController
     end
   end
 
-  def donate
-
-  end
+  def donate; end
 
   def charge_card
     if current_user.stripe_token
