@@ -1,8 +1,6 @@
-desc "Finds active members, picks one at random as a winner, sends me their email"
+desc "Charges everyone the amount they specified if they fail their goals"
 task :collect => :environment do
-  puts "Finding members active in the last month..."
-  puts "Picking that lucky one..."
-  puts "Sending them the money"
+  puts "Finding failed goals"
 end
 
 # Charge Policy
