@@ -15,10 +15,10 @@ end
   # running smoothly for everyone). I'm not making money off this (at least for now, it's pretty low maintenance). 
   # After this, all users that have been active in making goals for themselves in the last 2 weeks are pooled 
   # together and one person is randomly selected to recieve all of the money. This person will be emailed (so
-  # you'd better enter a valid emai, or I'M KEEPING IT ALL BUAHAHA), and have their choice of transfer methods.
+  # you'd better enter a valid email, or I'M KEEPING IT ALL BUAHAHA), and have their choice of transfer methods.
 
-  # So your money could be going to someone who needs it or sponsoring a $10,000 crack party. Overall, I would 
+  # So your money could be going to someone who needs it or sponsoring a $10,000 crack party (link). Overall, I would 
   # conclude that it's more or less a bad cause, and that you are just giving your money away for free, something
   # most people don't want to do. At the same time, by being active and pushing yourself to achieve your goals, 
-  # you do get a small reward - a free lottery ticket and a chance to win a bunch of cash as a reward for going 
+  # you do get a small reward - a free lottery ticket: a chance to win a bunch of cash as a reward for going 
   # after your dreams, hard.
