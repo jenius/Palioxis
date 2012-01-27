@@ -5,3 +5,4 @@ tmp/
 .sass-cache/
 config/initializers/stripe.rb
 .DS_Store
+.powder
