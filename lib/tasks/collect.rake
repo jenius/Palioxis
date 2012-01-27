@@ -1,6 +1,17 @@
 desc "Charges everyone the amount they specified if they fail their goals"
 task :collect => :environment do
-  puts "Finding failed goals"
+  puts "Finding failed goals..."
+  Goal.all.each do |goal|
+    if goal.state == "failed"
+      Stripe::Charge.create(
+        :amount => goal.payment.to_i,
+        :currency => "usd",
+        :customer => Stripe::Customer.retrieve(goal.user.stripe_token),
+        :description => "Weekly goal collection"
+      )
+      puts "Charged #{goal.payment} to #{goal.user.full_name}'s card"
+    end
+  end
 end
 
 # Charge Policy
