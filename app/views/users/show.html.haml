@@ -1,12 +1,9 @@
-%h2= @user.full_name
+%h2 
+  =@user.full_name
+  %small= link_to "#{ current_user.stripe_token ? 'Edit card' : 'Add a card' }", manage_card_path if current_user.id == @user.id
 
-%p= "#{@user.first_name}'s goals"
 
 %span= "#{pluralize(@user.goals.completed.count, 'goal')} completed"
 %p= "#{pluralize(@user.goals.failed.count, 'goal')} failed"
 
-%ul
-- @user.goals.each do |goal|
-  %li= goal.name
-
-%p= link_to "#{ current_user.stripe_token ? 'Edit card' : 'Add a card' }", manage_card_path if current_user.id == @user.id
+%p= "#{@user.first_name}'s goal history"
