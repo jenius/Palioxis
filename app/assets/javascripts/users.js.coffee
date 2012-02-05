@@ -3,6 +3,11 @@
 # You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
 
 $ ->
+
+  # ------------------------------------------------
+  # Handle Stripe Forms
+  # ------------------------------------------------
+
   Stripe.setPublishableKey $('meta[name=stripe-key]').attr('content')
 
   subscription =
@@ -35,3 +40,35 @@ $ ->
       Stripe.createToken card, subscription.stripeCallback
   
   subscription.handleForm()
+
+  # ------------------------------------------------
+  # Image Fader Plugin
+  # ------------------------------------------------
+
+  imgfade = (el, time) ->
+    el.hover ->
+      fadeover = $("<span class='fadeover' />")
+      fadeover.css
+        width: el.width(),
+        height: el.height() - 2,
+        position: 'absolute',
+        top: 0,
+        left: 0,
+        'background-position': "0 -#{el.height() + 2 }px",
+        display: 'none',
+        'background-image': el.css('background-image')
+        'z-index': 100
+      fadeover.appendTo(el).fadeIn(time)
+    , ->
+      $('.fadeover').fadeOut time, ->
+        $(this).remove()
+  
+  imgfade($('.h1'), 300)
+
+
+
+
+
+
+
+
