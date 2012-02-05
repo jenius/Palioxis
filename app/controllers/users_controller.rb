@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+
+  before_filter :introduction
   
   def index
     @users = User.all

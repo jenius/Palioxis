@@ -1,6 +1,6 @@
 class GoalsController < ApplicationController
 
-  before_filter :authenticate_user!
+  before_filter :authenticate_user!, :introduction
 
   def index
     @user = User.find(params[:user_id])
