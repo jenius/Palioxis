@@ -40,7 +40,7 @@ class UsersController < ApplicationController
     else
       flash[:notice] = "There was an error updating your profile"
     end
-    render 'edit'
+    redirect_to profile_path(@user.username)
   end
 
   def donate; end
