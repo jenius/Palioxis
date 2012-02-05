@@ -17,6 +17,7 @@ Palioxis::Application.routes.draw do
 
   # pages that don't fit a controller
   match '/introduction' => 'pages#intro', :as => 'intro'
+  match '/read_intro' => 'pages#read_intro', :as => 'read_intro'
 
   resources :users do
     resources :goals
