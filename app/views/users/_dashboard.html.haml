@@ -7,7 +7,7 @@
     ?
 - else
   %ul
-  - current_user.goals.each do |goal|
+  - current_user.goals.pending.each do |goal|
     %li
       =goal.name
       (
@@ -15,5 +15,9 @@
       =link_to 'mark as failed', fail_goal_path(goal.id)
       =link_to 'edit goal', edit_user_goal_path(current_user.id, goal.id)
       )
+  %p Completed Goals
+  %ul
+  - current_user.goals.completed.each do |goal|
+    %li= goal.name
   
   
