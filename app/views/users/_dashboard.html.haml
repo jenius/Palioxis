@@ -17,7 +17,7 @@
       )
   %p Completed Goals
   %ul
-  - current_user.goals.completed.each do |goal|
+  - current_user.goals.done.each do |goal|
     %li= goal.name
   
   

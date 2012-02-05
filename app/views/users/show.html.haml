@@ -1,6 +1,10 @@
 %h2= @user.full_name
 
 %p= "#{@user.first_name}'s goals"
+
+%span= "#{pluralize(@user.goals.completed.count, 'goal')} completed"
+%p= "#{pluralize(@user.goals.failed.count, 'goal')} failed"
+
 %ul
 - @user.goals.each do |goal|
   %li= goal.name

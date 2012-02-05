@@ -3,6 +3,8 @@ class Goal < ActiveRecord::Base
   attr_accessible :name, :due, :created_at, :payment, :emails, :other, :state
 
   scope :pending, lambda { where("state = 'pending'") }
-  scope :completed, lambda { where("state = 'failed' OR state = 'completed'") }
+  scope :failed, lambda { where("state = 'failed'") }
+  scope :completed, lambda { where("state = 'completed'") }
+  scope :done, lambda { where("state = 'failed' OR state = 'completed'") }
 
 end
