@@ -1,7 +1,7 @@
 %h2 
   =@user.full_name
   %small= link_to "#{ current_user.stripe_token ? 'Edit card' : 'Add a card' }", manage_card_path if current_user.id == @user.id
-  %small= link_to "Edit profile", edit_user_path if current_user.id == @user.id
+  %small= link_to "Edit profile", edit_profile_path if current_user.id == @user.id
 
 
 %span= "#{pluralize(@user.goals.completed.count, 'goal')} completed"

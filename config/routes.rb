@@ -19,8 +19,15 @@ Palioxis::Application.routes.draw do
   match '/introduction' => 'pages#intro', :as => 'intro'
   match '/read_intro' => 'pages#read_intro', :as => 'read_intro'
 
-  resources :users do
+  # you can only edit your own profile
+  match '/edit_profile' => 'users#edit', :as => 'edit_profile'
+
+  # resourceful routes
+  resources :users, :only => [:show, :update, :index] do
     resources :goals
   end
+
+  # this route is kind of questionable, but it works
+  match '/:username' => 'users#show', :as => 'profile'
   
 end
