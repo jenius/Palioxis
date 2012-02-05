@@ -24,4 +24,5 @@ task :pick_winner => :environment do
   winner = active_users[lottery_number]
   puts "Aaaand the winner is... #{winner}!!!"
   WinnerMailer.winner_proclamation(winner).deliver
+  # Also send a congrats to the winner, and how they can claim their prize
 end

@@ -6,4 +6,9 @@ class WinnerMailer < ActionMailer::Base
     mail :to => "escalantejeff@gmail.com", :subject => "This Month's Palioxis Winner"
   end
 
+  def winner_congrats(winner)
+    @winner = winner
+    mail :to => winner, :subject => "You just won the Palioxis jackpot!"
+  end
+
 end

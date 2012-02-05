@@ -18,24 +18,19 @@ class UsersController < ApplicationController
 
   def edit_card
 
-    customer = Stripe::Customer.retrieve(current_user.stripe_token)
-    customer.card = params[:stripe_token]
+    @user = current_user
 
-    customer.save ? flash[:notice] = "Card updated successfully" : flash[:notice] = "Error! Oh noes!"
-    redirect_to current_user
-
-  end
-
-  # this has to go. should be merged into the edit card method
-  def update
-    current_user.save_card
-    if current_user.save
-      flash[:notice] = "Card Saved!"  
-      redirect_to current_user
+    # If the user already has a card, edit it. If not, create a new one.
+    if current_user.stripe_token?
+      edited = @user.edit_card(params[:stripe_token])
+      edited ? flash[:notice] = "Card updated successfully" : flash[:notice] = "Error! Oh noes!"
     else
-      flash[:notice] = "There was a problem while saving your card, please contact an admin."
-      render 'add_card'
+      @user.add_new_card(params[:stripe_token])
+      @user.save ? flash[:notice] = "Card added successfully" : flash[:notice] = "Error! Oh noes!"
     end
+
+    redirect_to @user
+
   end
 
   def donate; end
