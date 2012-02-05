@@ -1,5 +1,5 @@
 %p Donate some money to me!
 
-=form_tag charge_card_path do
+=form_tag charge_card_path(current_user.id) do
   =text_field_tag :amount, nil, :name => 'amount'
   =submit_tag "Hit it!"

@@ -1,0 +1,2 @@
+Stripe.api_key = "" # this is your secret key, be careful with it
+STRIPE_PUBLIC_KEY = "" # this is (get ready for a big surpruise), your public key

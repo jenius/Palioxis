@@ -44,7 +44,6 @@ ActiveRecord::Schema.define(:version => 20120116043812) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "stripe_token"
-    t.string   "has_card"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
