@@ -3,3 +3,5 @@
 %p= "$#{@goal.payment}"
 %p= @goal.emails
 %p= @goal.other
+
+%p= link_to "edit goal", edit_user_goal_path(current_user.id, @goal.id)

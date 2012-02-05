@@ -1,13 +1,41 @@
-%p Did you complete your goal? Be honest...
+%h2 Edit Goal
 
 = form_for([@user, @goal]) do |f|
 
   .field
-    =f.label :status, "Yes!"
-    =f.radio_button :state, :success
-   
+    =f.label :name
+    =f.text_field :name
+  
   .field
-    =f.label :status, "No..."
-    =f.radio_button :state, :failure
+    =f.label :due
+    =f.text_field :due
+  
+  .field
+    =f.label :payment
+    =f.text_field :payment
+  
+  .field
+    =f.label :emails
+    =f.text_field :emails
+  
+  .field
+    =f.label :other
+    =f.text_area :other
+
+  - if @goal.state.to_sym == :pending
+
+    %p Have you completed this goal? Be honest...
+
+    .field
+      =f.label :status, "Yes!"
+      =f.radio_button :state, :completed
+     
+    .field
+      =f.label :status, "No..."
+      =f.radio_button :state, :failed
+  
+  - else
+    
+    =content_tag :p, "You #{@goal.state} this goal", :class => @goal.state
     
   =f.submit "Submit"

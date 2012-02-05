@@ -1,0 +1,4 @@
+- if current_user.stripe_token
+  = render 'edit_card'
+- else
+  = render 'add_card'

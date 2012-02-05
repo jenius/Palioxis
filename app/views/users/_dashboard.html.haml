@@ -1,0 +1,19 @@
+%p Your Goals
+=link_to 'new goal', new_user_goal_path(current_user.id)
+- if current_user.goals.empty?
+  %p
+    You don't have any goals. Perhaps you should
+    =link_to 'create one', new_user_goal_path(current_user.id)
+    ?
+- else
+  %ul
+  - current_user.goals.each do |goal|
+    %li
+      =goal.name
+      (
+      =link_to 'mark as completed', complete_goal_path(goal.id)
+      =link_to 'mark as failed', fail_goal_path(goal.id)
+      =link_to 'edit goal', edit_user_goal_path(current_user.id, goal.id)
+      )
+  
+  
