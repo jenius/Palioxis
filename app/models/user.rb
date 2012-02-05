@@ -25,9 +25,24 @@ class User < ActiveRecord::Base
   end
 
   def edit_card(token)
-    customer = Stripe::Customer.retrieve(stripe_token)
+    customer = Stripe::Customer.retrieve(self.stripe_token)
     customer.card = token
     customer.save ? true : false
   end
+
+  def charge_card(amount)
+    create_stripe_charge(amount)
+  end
+
+  private
+
+    def create_stripe_charge(amount)
+      Stripe::Charge.create(
+        :amount => amount.to_i,
+        :currency => "usd",
+        :customer => Stripe::Customer.retrieve(stripe_token),
+        :description => "Donation from #{email}"
+      )
+    end
 
 end

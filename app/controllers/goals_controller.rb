@@ -49,7 +49,6 @@ class GoalsController < ApplicationController
   def edit
     @user = User.find(params[:user_id])
     @goal = @user.goals.find(params[:id])
-    logger.debug @goal.inspect
   end
 
   def update

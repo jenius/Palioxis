@@ -10,10 +10,6 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
   end
 
-  def add_card
-    @user = User.find(params[:id])
-  end
-
   def manage_card; end
 
   def edit_card
@@ -26,29 +22,40 @@ class UsersController < ApplicationController
       edited ? flash[:notice] = "Card updated successfully" : flash[:notice] = "Error! Oh noes!"
     else
       @user.add_new_card(params[:stripe_token])
-      @user.save ? flash[:notice] = "Card added successfully" : flash[:notice] = "Error! Oh noes!"
+      @user.save ? flash[:notice] = "Card added successfully" : flash[:notice] = "There was a problem adding your card."
     end
 
     redirect_to @user
 
   end
 
+  def edit
+    # anyone can edit anyone else's profile. change the logic to rely on current user
+    @user = User.find(params[:id])
+  end
+
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(params[:user])
+      flash[:notice] = "Profile updated"
+    else
+      flash[:notice] = "There was an error updating your profile"
+    end
+    render 'edit'
+  end
+
   def donate; end
 
   def charge_card
+    
     if current_user.stripe_token
-      Stripe::Charge.create(
-        :amount => params[:amount].to_i,
-        :currency => "usd",
-        :customer => Stripe::Customer.retrieve(current_user.stripe_token),
-        :description => "Donation from #{current_user.email}"
-      )
+      current_user.charge_card(params[:amount])
       flash[:notice] = "Great success! I now have all your monies!"
-      render 'donate'
     else
       flash[:notice] = "You haven't added a card yet!"
-      render 'donate'
     end
+
+    render 'donate'
 
   end
 
