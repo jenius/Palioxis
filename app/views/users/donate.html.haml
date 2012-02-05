@@ -1,5 +1,8 @@
-%p Donate some money to me!
+%p
+  Donate some money to me!
+  %small Amount is in dollars, no cents
 
 =form_tag charge_card_path(current_user.id) do
+  =label_tag "$"
   =text_field_tag :amount, nil, :name => 'amount'
   =submit_tag "Hit it!"

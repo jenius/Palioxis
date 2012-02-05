@@ -37,8 +37,9 @@ class User < ActiveRecord::Base
   private
 
     def create_stripe_charge(amount)
+      charge = amount + "00"
       Stripe::Charge.create(
-        :amount => amount.to_i,
+        :amount => charge.to_i,
         :currency => "usd",
         :customer => Stripe::Customer.retrieve(stripe_token),
         :description => "Donation from #{email}"
