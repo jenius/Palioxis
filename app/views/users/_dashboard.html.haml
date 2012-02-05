@@ -1,5 +1,6 @@
-%p Your Goals
-=link_to 'new goal', new_user_goal_path(current_user.id)
+%p 
+  Your Goals
+  %small= link_to 'new goal', new_user_goal_path(current_user.id)
 - if current_user.goals.empty?
   %p
     You don't have any goals. Perhaps you should
