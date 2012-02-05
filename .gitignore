@@ -4,5 +4,6 @@ log/*.log
 tmp/
 .sass-cache/
 config/initializers/stripe.rb
+config/initializers/setup_mail.rb
 .DS_Store
 .powder

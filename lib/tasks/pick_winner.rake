@@ -20,6 +20,8 @@ task :pick_winner => :environment do
   # roll the dice
   lottery_number = rand(active_users.length)
 
-  # pick the lucky winner
-  puts "Aaaand the winner is... #{active_users[lottery_number]}!!!"
+  # pick the lucky winner and email it to me
+  winner = active_users[lottery_number]
+  puts "Aaaand the winner is... #{winner}!!!"
+  WinnerMailer.winner_proclamation(winner).deliver
 end
