@@ -72,7 +72,7 @@ $ ->
   # ------------------------------------------------
 
   $('.current-goals li').hover ->
-    $(this).find('.actions').stop().fadeToggle(500)
+    $(this).find('.actions').stop(true, true).fadeToggle(500)
 
 
 
