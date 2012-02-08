@@ -45,6 +45,8 @@ $ ->
   # Image Fader Plugin
   # ------------------------------------------------
 
+  # this needs serious work and should extend jquery. temporary for now
+
   imgfade = (el, time) ->
     el.hover ->
       fadeover = $("<span class='fadeover' />")
@@ -64,6 +66,13 @@ $ ->
         $(this).remove()
   
   imgfade($('.h1'), 300)
+
+  # ------------------------------------------------
+  # Page Interaction
+  # ------------------------------------------------
+
+  $('.current-goals li').hover ->
+    $(this).find('.actions').stop().fadeToggle(500)
 
 
 

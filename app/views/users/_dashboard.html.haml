@@ -1,21 +1,26 @@
-%p 
+%h1 
   Your Goals
-  %small= link_to 'new goal', new_user_goal_path(current_user.id)
+= link_to new_user_goal_path(current_user.id), :class => 'new-goal' do
+  new goal
+  %span +
 - if current_user.goals.empty?
   %p
     You don't have any goals. Perhaps you should
     =link_to 'create one', new_user_goal_path(current_user.id)
     ?
 - else
-  %ul
-  - current_user.goals.pending.each do |goal|
-    %li
-      =goal.name
-      (
-      =link_to 'mark as completed', complete_goal_path(goal.id)
-      =link_to 'mark as failed', fail_goal_path(goal.id)
-      =link_to 'edit goal', edit_user_goal_path(current_user.id, goal.id)
-      )
+  %ul.current-goals
+    - current_user.goals.pending.each do |goal|
+      %li
+        %p=goal.name
+        .actions
+          =link_to complete_goal_path(goal.id), :class => 'complete' do
+            mark as completed
+            %span.check
+          =link_to fail_goal_path(goal.id), :class => 'failed' do
+            mark as failed
+            %span.x
+          =link_to 'edit goal', edit_user_goal_path(current_user.id, goal.id), :class => 'edit'
   %p Completed Goals
   %ul
   - current_user.goals.done.each do |goal|

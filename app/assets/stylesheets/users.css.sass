@@ -1,16 +1,8 @@
+@import 'mixins'
+
 // Place all the styles related to the users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
-=box-shadow($params)
-  -webkit-box-shadow: $params
-  -moz-box-shadow: $params
-  -o-box-shadow: $params
-  -ms-box-shadow: $params
-  box-shadow: $params
-
-=ir
-  text-indent: -9999px
 
 body
   font-family: sans-serif
@@ -25,6 +17,17 @@ body
   border-radius: 3px
   margin-top: 45px
   padding: 25px
+  position: relative
+
+  h1
+    font-weight: bold
+    font-size: 30px
+    margin: 0
+    color: #333
+    text-shadow: 0 0 1px rgba(255, 255, 255, .1)
+    border-bottom: 1px solid #D8D8D8
+    padding-bottom: 6px
+    margin-bottom: 17px
 
 header
   background: #333
@@ -83,3 +86,101 @@ header
 
     &:hover
       color: #fff
+
+.new-goal
+  +button
+  +transition
+  font-size: 13px
+  border-radius: 50px
+  opacity: .8
+  position: absolute
+  top: 23px
+  right: 28px
+
+  span
+    font-weight: 900
+
+  &:hover
+    opacity: 1
+
+.current-goals
+  margin: 0
+  padding: 0
+
+  li
+    list-style-type: none
+    padding: 18px
+    font-size: 16px
+    font-weight: 300
+    color: #494949
+    -webkit-font-smoothing: antialiased
+    overflow: hidden
+
+    &:nth-child(odd)
+      background-color: #FAFAFA
+    
+    p
+      margin: 7px 0
+      float: left
+    
+    .actions
+      float: right
+      display: none
+    
+    .complete
+      +button(#68e49c)
+      text-indent: -9999px
+      width: 5px
+      position: relative
+
+      span
+        background: image-url('check.png') no-repeat
+        width: 16px
+        height: 14px
+        display: block
+        position: absolute
+        top: 8px
+        left: 15px
+
+    .failed
+      +button(#e37070)
+      +transition
+      text-indent: -9999px
+      width: 5px
+      position: relative
+
+      span
+        background: image-url('x.png') no-repeat
+        width: 16px
+        height: 14px
+        display: block
+        position: absolute
+        top: 10px
+        left: 18px
+
+    .edit
+      +button(#ffcc69)
+    
+    .complete, .failed, .edit
+      font-size: 13px
+      border-radius: 50px
+      +transition
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  

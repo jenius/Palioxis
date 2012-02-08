@@ -1,0 +1,83 @@
+$font-stack: "Helvetica Neue", HelveticaNeue, Helvetica, "Lucidia Grande", Arial, sans-serif
+
+=box-shadow($params)
+  -webkit-box-shadow: $params
+  -moz-box-shadow: $params
+  -o-box-shadow: $params
+  -ms-box-shadow: $params
+  box-shadow: $params
+
+=ir
+  text-indent: -9999px
+
+=transition($params: all .25s ease-in-out)
+  -webkit-transition: $params
+  -moz-transition: $params
+  -o-transition: $params
+  -ms-transition: $params
+  transition: $params
+
+// -----------------------------------------------------
+// Buttons
+// -----------------------------------------------------
+
+=gradient($color1, $color2)
+  background-color: $color2
+  background-repeat: repeat-x
+  background-image: image-url('noise.png'), -moz-linear-gradient(top, $color1 0%, $color2 100%)
+  background-image: image-url('noise.png'), -webkit-gradient(linear, left top, left bottom, color-stop(0%, $color1), color-stop(100%, $color2))
+  background-image: image-url('noise.png'), -webkit-linear-gradient(top, $color1 0%, $color2 100%)
+  background-image: image-url('noise.png'), -o-linear-gradient(top, $color1 0%, $color2 100%)
+  background-image: image-url('noise.png'), -ms-linear-gradient(top, $color1 0%, $color2 100%)
+  background-image: image-url('noise.png'), linear-gradient(top, $color1 0%, $color2 100%)
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='$color1', endColorstr='$color2',GradientType=0 )
+
+=simple-gradient($color)
+  $start: lighten($color, 10%)
+  $end:   darken($color, 10%)
+  +gradient($start, $end)
+
+// this can be more flexible using @if and @else
+  // add size options, small medium large
+  // add rounded, square, or pill
+  // extend the simple gradient and add inset box shadow for edge effect
+  // if you wanna be really good, revert to the complex gradient when inset shadow isn't supported
+
+=button($color: #7DE1F0, $tone: 'light')
+  $text-color: #fff
+  @if $tone == 'dark'
+    $text-color: #494949
+  $start: lighten($color, 10%)
+  $end:   darken($color, 10%)
+  +simple-gradient($color)
+  +box-shadow(inset 0 1px 0 rgba(255,255,255,0.3))
+  @if $tone == 'dark'
+    text-shadow: 1px 1px 1px rgba(#fff,.3)
+  @else
+    text-shadow: 1px 1px 1px rgba(#000,.1)
+  border: 1px solid darken($color, 10%)
+  border-radius: 3px
+  color: $text-color
+  cursor: pointer
+  font-weight: bold
+  font-family: $font-stack
+  line-height: 1
+  padding: 7px 21px 9px
+  text-align: center
+  text-decoration: none
+  display: inline-block
+
+  &:hover, &:focus
+    background-position: 0 -10px
+    color: darken($text-color, 3%)
+    @if $tone == 'dark'
+      text-shadow: 1px 1px 1px rgba(#fff,.5)
+    @else
+      text-shadow: 1px 1px 1px rgba(#000,.2)
+
+  &:active
+    +box-shadow(inset 0 1px 10px rgba(#000,.4))
+    @if $tone == 'dark'
+      text-shadow: -1px -1px 1px rgba(#fff,.5)
+    @else
+      text-shadow: -1px -1px 1px rgba(#000,.2)
