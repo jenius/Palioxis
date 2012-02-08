@@ -12,7 +12,9 @@
   %ul.current-goals
     - current_user.goals.pending.each do |goal|
       %li
-        %p=goal.name
+        %p
+          =goal.name
+          %small= "#{time_until_due(goal.due)}"
         .actions
           =link_to complete_goal_path(goal.id), :class => 'complete' do
             mark as completed
