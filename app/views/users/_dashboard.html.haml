@@ -27,5 +27,9 @@
   %ul
   - current_user.goals.done.each do |goal|
     %li= goal.name
+
+.popup.create-goal
+  %h1 Create a new goal
+  =render :partial => 'goals/new'
   
   

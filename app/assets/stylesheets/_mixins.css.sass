@@ -37,12 +37,6 @@ $font-stack: "Helvetica Neue", HelveticaNeue, Helvetica, "Lucidia Grande", Arial
   $end:   darken($color, 10%)
   +gradient($start, $end)
 
-// this can be more flexible using @if and @else
-  // add size options, small medium large
-  // add rounded, square, or pill
-  // extend the simple gradient and add inset box shadow for edge effect
-  // if you wanna be really good, revert to the complex gradient when inset shadow isn't supported
-
 =button($color: #7DE1F0, $tone: 'light')
   $text-color: #fff
   @if $tone == 'dark'
