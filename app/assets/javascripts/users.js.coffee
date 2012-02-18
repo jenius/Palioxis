@@ -68,11 +68,60 @@ $ ->
   imgfade($('.h1'), 300)
 
   # ------------------------------------------------
-  # Page Interaction
+  # Pop effects for gfx
   # ------------------------------------------------
 
+  $.fn.gfxPopIn = (options = {}) ->
+    options.scale ?= '.2'
+    $(@).queueNext ->
+      $(@).transform(
+        '-webkit-transform-origin': '50% 50%'
+        '-moz-transform-origin': '50% 50%'
+        scale: options.scale
+      ).show()
+    $(@).gfx({
+      scale:   '1'
+      opacity: '1'
+    }, options)
+
+  $.fn.gfxPopOut = (options) ->
+    $(@).queueNext ->
+      $(@).transform
+        '-webkit-transform-origin': '50% 50%'
+        '-moz-transform-origin': '50% 50%'
+        scale:   '1'
+        opacity: '1'
+    $(@).gfx({
+      scale:   '.2'
+      opacity: '0'
+    }, options)
+    $(@).queueNext ->
+      $(@).hide().transform(
+        opacity: '1'
+        scale:   '1'
+      )
+
+  # ------------------------------------------------
+  # Page Interaction
+  # ------------------------------------------------
+  
   $('.current-goals li').hover ->
     $(this).find('.actions').stop(true, true).fadeToggle(500)
+
+  $('.new-goal').click (e) ->
+    e.preventDefault()
+    popup = $('.create-goal').clone()
+    $('.create-goal').remove()
+    popup.appendTo($('body'))
+         .css({ top: ($(window).height() - 370)/2, left: ($(window).width() - 674)/2 })
+    if Modernizr.cssanimations then popup.gfxPopIn() else popup.fadeIn()
+         
+    
+    $('.popup .close').click ->
+      popup = $(this).parent().parent()
+      if Modernizr.cssanimations then popup.gfxPopOut() else popup.fadeOut()
+      
+
 
 
 

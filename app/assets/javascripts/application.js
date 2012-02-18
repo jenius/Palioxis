@@ -6,4 +6,6 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require gfx
+//= require modernizr.custom
 //= require_tree .

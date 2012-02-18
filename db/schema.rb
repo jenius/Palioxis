@@ -44,7 +44,6 @@ ActiveRecord::Schema.define(:version => 20120205030254) do
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.string   "stripe_token"
-    t.boolean  "has_card"
     t.boolean  "read_intro"
   end
 
