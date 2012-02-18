@@ -113,26 +113,23 @@ $ ->
     $('.popup .close').click ->
       popup = $(this).parent()
       if Modernizr.cssanimations then popup.gfxPopOut() else popup.fadeOut()
+  
+  launch_popup = (el) ->
+    popup = el.clone()
+    el.remove()
+    popup.appendTo($('body'))
+          # !!! this needs to reflect dynamic width and height
+         .css({ top: ($(window).height() - 370)/2, left: ($(window).width() - 674)/2 }) 
+    if Modernizr.cssanimations then popup.gfxPopIn() else popup.fadeIn()
+    bind_close_event()
 
   $('.new-goal').click (e) ->
     e.preventDefault()
-    popup = $('.create-goal').clone()
-    $('.create-goal').remove()
-    popup.appendTo($('body'))
-         .css({ top: ($(window).height() - 370)/2, left: ($(window).width() - 674)/2 })
-    if Modernizr.cssanimations then popup.gfxPopIn() else popup.fadeIn()
-         
-    bind_close_event()
+    launch_popup($('.create-goal'))
   
   $('.manage-card').click (e) ->
     e.preventDefault()
-    popup = $('.credit-card').clone()
-    $('.credit-card').remove()
-    popup.appendTo($('body'))
-         .css({ top: ($(window).height() - 370)/2, left: ($(window).width() - 674)/2 })
-    if Modernizr.cssanimations then popup.gfxPopIn() else popup.fadeIn()
-
-    bind_close_event()
+    launch_popup($('.credit-card'))
       
 
 
