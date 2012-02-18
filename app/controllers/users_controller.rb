@@ -25,7 +25,7 @@ class UsersController < ApplicationController
       @user.save ? flash[:notice] = "Card added successfully" : flash[:notice] = "There was a problem adding your card."
     end
 
-    redirect_to @user
+    redirect_to profile_path(@user.username)
 
   end
 
