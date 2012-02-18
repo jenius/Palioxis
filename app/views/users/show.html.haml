@@ -8,3 +8,5 @@
 %p= "#{pluralize(@user.goals.failed.count, 'goal')} failed"
 
 %p= "#{@user.first_name}'s goal history"
+
+%img{ src: "#{@user.avatar_url(:thumb)}" }
