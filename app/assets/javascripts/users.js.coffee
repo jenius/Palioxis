@@ -107,6 +107,12 @@ $ ->
   
   $('.current-goals li').hover ->
     $(this).find('.actions').stop(true, true).fadeToggle(500)
+  
+  bind_close_event = ->
+    $('.popup .close').unbind('click')
+    $('.popup .close').click ->
+      popup = $(this).parent()
+      if Modernizr.cssanimations then popup.gfxPopOut() else popup.fadeOut()
 
   $('.new-goal').click (e) ->
     e.preventDefault()
@@ -116,10 +122,17 @@ $ ->
          .css({ top: ($(window).height() - 370)/2, left: ($(window).width() - 674)/2 })
     if Modernizr.cssanimations then popup.gfxPopIn() else popup.fadeIn()
          
-    
-    $('.popup .close').click ->
-      popup = $(this).parent().parent()
-      if Modernizr.cssanimations then popup.gfxPopOut() else popup.fadeOut()
+    bind_close_event()
+  
+  $('.manage-card').click (e) ->
+    e.preventDefault()
+    popup = $('.credit-card').clone()
+    $('.credit-card').remove()
+    popup.appendTo($('body'))
+         .css({ top: ($(window).height() - 370)/2, left: ($(window).width() - 674)/2 })
+    if Modernizr.cssanimations then popup.gfxPopIn() else popup.fadeIn()
+
+    bind_close_event()
       
 
 

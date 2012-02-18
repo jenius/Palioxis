@@ -1,6 +1,6 @@
 %h2 
   =@user.full_name
-  %small= link_to "#{ current_user.stripe_token ? 'Edit card' : 'Add a card' }", manage_card_path if current_user.id == @user.id
+  %small= link_to "#{ current_user.stripe_token ? 'Edit card' : 'Add a card' }", manage_card_path, class: 'manage-card' if current_user.id == @user.id
   %small= link_to "Edit profile", edit_profile_path if current_user.id == @user.id
 
 
@@ -10,3 +10,7 @@
 %p= "#{@user.first_name}'s goal history"
 
 %img{ src: "#{@user.avatar_url(:thumb)}" }
+
+.popup.credit-card
+  %h1= current_user.stripe_token ? 'Edit card' : 'Add a card'
+  =render :partial => 'manage_card'
