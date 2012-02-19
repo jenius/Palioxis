@@ -68,11 +68,72 @@ $ ->
   imgfade($('.h1'), 300)
 
   # ------------------------------------------------
-  # Page Interaction
+  # Pop effects for gfx
   # ------------------------------------------------
 
+  $.fn.gfxPopIn = (options = {}) ->
+    options.scale ?= '.2'
+    $(@).queueNext ->
+      $(@).transform(
+        '-webkit-transform-origin': '50% 50%'
+        '-moz-transform-origin': '50% 50%'
+        scale: options.scale
+      ).show()
+    $(@).gfx({
+      scale:   '1'
+      opacity: '1'
+    }, options)
+
+  $.fn.gfxPopOut = (options) ->
+    $(@).queueNext ->
+      $(@).transform
+        '-webkit-transform-origin': '50% 50%'
+        '-moz-transform-origin': '50% 50%'
+        scale:   '1'
+        opacity: '1'
+    $(@).gfx({
+      scale:   '.2'
+      opacity: '0'
+    }, options)
+    $(@).queueNext ->
+      $(@).hide().transform(
+        opacity: '1'
+        scale:   '1'
+      )
+
+  # ------------------------------------------------
+  # Page Interaction
+  # ------------------------------------------------
+  
   $('.current-goals li').hover ->
     $(this).find('.actions').stop(true, true).fadeToggle(500)
+  
+  bind_close_event = ->
+    $('.popup .close').unbind('click')
+    $('.popup .close').click ->
+      popup = $(this).parent()
+      if Modernizr.cssanimations then popup.gfxPopOut() else popup.fadeOut()
+      $('.underlay').fadeOut 300, -> $(this).remove()
+  
+  launch_popup = (el) ->
+    underlay = $("<div class='underlay'></div>")
+    underlay.appendTo($('body')).fadeIn 300
+    popup = el.clone()
+    el.remove()
+    popup.appendTo($('body'))
+          # !!! this needs to reflect dynamic width and height
+         .css({ top: ($(window).height() - 370)/2, left: ($(window).width() - 674)/2 }) 
+    if Modernizr.cssanimations then popup.gfxPopIn() else popup.fadeIn()
+    bind_close_event()
+    false
+
+  $('.new-goal').click ()->
+    launch_popup($('.create-goal'))
+  
+  $('.manage-card').click ()->
+    launch_popup($('.credit-card'))
+      
+
 
 
 

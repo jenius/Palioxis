@@ -1,6 +1,7 @@
 class User < ActiveRecord::Base
 	has_many :goals
-  attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :username, :goals, :stripe_token
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :first_name, :last_name, :username, :goals, :stripe_token, :avatar
+  mount_uploader :avatar, AvatarUploader
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable

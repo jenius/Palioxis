@@ -45,6 +45,9 @@ module Palioxis
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
+    # I don't understand why it's not including vendor, but now it has no choice!
+    config.assets.paths << Rails.root.join("vendor")
+
     # when deploying on heroku, enable this
     #config.assets.initialize_on_precompile = false
   end
