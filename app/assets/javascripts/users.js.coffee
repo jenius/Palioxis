@@ -113,8 +113,11 @@ $ ->
     $('.popup .close').click ->
       popup = $(this).parent()
       if Modernizr.cssanimations then popup.gfxPopOut() else popup.fadeOut()
+      $('.underlay').fadeOut 300, -> $(this).remove()
   
   launch_popup = (el) ->
+    underlay = $("<div class='underlay'></div>")
+    underlay.appendTo($('body')).fadeIn 300
     popup = el.clone()
     el.remove()
     popup.appendTo($('body'))
@@ -122,13 +125,12 @@ $ ->
          .css({ top: ($(window).height() - 370)/2, left: ($(window).width() - 674)/2 }) 
     if Modernizr.cssanimations then popup.gfxPopIn() else popup.fadeIn()
     bind_close_event()
+    false
 
-  $('.new-goal').click (e) ->
-    e.preventDefault()
+  $('.new-goal').click ()->
     launch_popup($('.create-goal'))
   
-  $('.manage-card').click (e) ->
-    e.preventDefault()
+  $('.manage-card').click ()->
     launch_popup($('.credit-card'))
       
 
