@@ -1,27 +1,29 @@
 = form_for([current_user, current_user.goals.build]) do |f|
   
   .field
-    =f.label :name, "Name of the goal"
     =f.text_field :name
+    =f.label :name, "Name of the goal"
 
   .field
-    =f.label :due, "When is it due?"
     =f.text_field :due
+    =f.label :due, "When is it due?"
   
   .field
-    =f.label :payment, "Your bet?"
-    %small Minimum is $3
     =f.text_field :payment
+    .group
+      =f.label :payment, "Your bet?"
+      %small Minimum is $3
 
   .field
-    =f.label :emails, "Who's going to hold you accountable?"
-    %br
-    %small Enter at least one email
     =f.text_field :emails
+    .group
+      =f.label :emails, "Who's going to hold you accountable?"
+      %small At least one email
   
   .field
-    =f.label :other, "Any other notes"
     =f.text_field :other 
+    =f.label :other, "Any other notes"
+    
 
   .actions
     = f.submit
