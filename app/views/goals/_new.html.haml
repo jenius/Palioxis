@@ -10,13 +10,14 @@
   
   .field
     =f.label :payment, "Your bet?"
-    =f.text_field :payment
     %small Minimum is $3
+    =f.text_field :payment
 
   .field
     =f.label :emails, "Who's going to hold you accountable?"
-    =f.text_field :emails
+    %br
     %small Enter at least one email
+    =f.text_field :emails
   
   .field
     =f.label :other, "Any other notes"

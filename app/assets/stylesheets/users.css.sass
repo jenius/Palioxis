@@ -188,9 +188,30 @@ header
   border-radius: 7px
   padding: 30px 44px
 
+  h1
+    text-align: center
+    border-bottom: none !important
+
   .field
+    margin: 10px 0
+    text-align: right
+
     label
       font-size: 15px
+    
+    input
+      border: 1px solid #CBCBCB
+      padding: 7px
+      border-radius: 3px
+      +box-shadow(inset 0 2px 4px #FAFAFA)
+      +transition
+      width: 335px
+      margin-left: 15px
+
+      &:focus
+        outline: none
+        border-color: #92DEBB
+        +box-shadow(0 0 5px #DAFFED)
 
 
 
